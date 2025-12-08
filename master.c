@@ -264,6 +264,7 @@ void app_main(void){
                             err_master = CO_LSSmaster_configureStore(CO->LSSmaster, timeDifference_us);
                             if(err_master == CO_LSSmaster_OK){
                                 ESP_LOGE("Hem porgut guardar el node ID. Deseleccionem node...")
+                                idSlave ++;
                                 lssSubState = LSS_DESELECT_NODE;
                             }else{
                                 ESP_LOGE("No hem pogut guardar el node ID. Deseleccionem ...")
@@ -273,7 +274,6 @@ void app_main(void){
                             err_master = CO_LSSmaster_switchStateGlobal(CO->LSSmaster, timeDifference_us, CO_LSS_SWITCH_GLOBAL_STATE_WAIT);
                             if(err_master == CO_LSSmaster_OK){
                                 ESP_LOGE("Podem canviar estat LSS... Comencem nou descobriment")
-                                idSlave ++; 
                                 lssSubState = LSS_START_SCAN; 
                             }else if(err_master == CO_LSSmaster_NO_RESPONSE_TIMEOUT){
                                 ESP_LOGE("No podem canviar estat LSS... Repetim descobriment...")
@@ -359,6 +359,7 @@ void app_main(void){
     }
 
 }
+
 
 
 
