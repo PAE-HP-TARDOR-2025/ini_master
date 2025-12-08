@@ -332,10 +332,8 @@ void app_main(void){
                             }
                     }else{
                         ESP_LOGE(TAG, "EMCY DETECTAT!");
-                        
-                    }
-
-                    break;
+                    } #endif
+                break;
 
                 case MASTER_ERROR:
                     /*canviar el estat a reset */
@@ -344,10 +342,9 @@ void app_main(void){
                     CO_NMT_sendCommand(CO->NMT, CO_NMT_RESET_NODE, 0); 
                     
                     reset = CO_RESET_COMM;// forçar reiniciar la pila del master, sortim del bucle 
-                  
-                    
                 break;
             }
         }
     }
+
 }
