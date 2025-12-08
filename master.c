@@ -250,6 +250,9 @@ void app_main(void){
                                 if (err_master == CO_LSSmaster_OK) {
                                     ESP_LOGE("Hem pogut configurar el node ID")
                                     lssSubState = LSS_CONFIG_STORE;
+                                }else{
+                                    ESP_LOGE("Alguna cosa malament amb el vendorID del node"); 
+                                    lssSubState = LSS_DESELECT_NODE;
                                 }
                             } else{
                                 // El esclavo no tiene un ID válido, avanzar al deseleccionar
@@ -356,5 +359,6 @@ void app_main(void){
     }
 
 }
+
 
 
