@@ -225,6 +225,14 @@ void app_main(void){
                                 lss_SubState = LSS_END_DISCOVERY;
                             } 
                         break;
+                        case LSS_WAIT_ADRESS:
+                            err_master = CO_LSSmaster_InquireLssAddress(CO->LSSmaster, timeDifference_us, &adresses[slaveIndex]);          
+                            if (err_master == CO_LSSmaster_OK) {
+                                lssSubState = LSS_SELECT_NODE;
+                            } else if (err_master == CO_LSSmaster_NO_RESPONSE_TIMEOUT) {
+                                lssSubState = LSS_START_SCAN;
+                            }
+                        break; 
                         case LSS_SELECT_NODE:
                             err_master = CO_LSSmaster_swStateSelect(CO->LSSmaster, timeDifference_us, &adresses[idSlave]); 
                             if (err_master == CO_LSSmaster_OK) {
@@ -348,4 +356,5 @@ void app_main(void){
     }
 
 }
+
 
