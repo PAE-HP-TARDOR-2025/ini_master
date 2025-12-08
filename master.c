@@ -340,7 +340,7 @@ void app_main(void){
                     ESP_LOGE(TAG, "MASTER_ERROR: reiniciant nodes i la pila CANopen");
                     CO_NMT_sendCommand(CO->NMT, CO_NMT_RESET_COMMUNICATION, 0);
                     CO_NMT_sendCommand(CO->NMT, CO_NMT_RESET_NODE, 0); 
-                    
+                    masterState = MASTER_INIT; 
                     reset = CO_RESET_COMM;// forçar reiniciar la pila del master, sortim del bucle 
                 break;
             }
@@ -348,3 +348,4 @@ void app_main(void){
     }
 
 }
+
